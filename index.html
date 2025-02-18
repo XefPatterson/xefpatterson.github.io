@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Félix G. Harvey - Resume</title>
+	<!-- Add Google Fonts import for Oswald -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Inter:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-color: #f9f9f9;
+            --header-text: #ffffff;
+            --link-hover: #5dade2;
+            --text-color: #333333;
+			
+			/* Define font families as CSS variables for easy maintenance */
+            --heading-font: 'Oswald', sans-serif;
+            --body-font: 'Inter', sans-serif;
+        }
+		
+		/* Maintain Oswald for headings */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--heading-font);
+            letter-spacing: 0.5px;
+        }
+
+        body {
+            font-family: var(--body-font);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+		
+        p, .authors, .date, li {
+            font-family: var(--body-font);
+            font-weight: 400;
+			margin: 0.5rem 0;
+        }
+
+        /* Header styles remain the same as previous version */
+        .header-container {
+            background-color: var(--primary-color);
+            color: var(--header-text);
+            padding: 2.5rem 0;
+            margin-bottom: 0rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+		
+		h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+			margin-bottom: 1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+			transition: opacity 0.2s ease;
+        }
+		
+		.contact-item img {
+            width: 24px;  /* Base size for icons */
+            height: 24px;
+            object-fit: contain;  /* Maintains aspect ratio */
+            vertical-align: middle;  /* Aligns icon with text */
+            margin-right: 8px;  /* Space between icon and text */
+            filter: brightness(0) invert(1);  /* Makes icons white */
+            transition: transform 0.2s ease;  /* Smooth hover effect */
+        }
+		
+		.contact-item:hover {
+            opacity: 0.8;  /* Subtle hover effect */
+        }
+
+        .contact-item:hover img {
+            transform: scale(1.1);  /* Slightly enlarges icon on hover */
+        }
+
+        .header-content a {
+            color: var(--header-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .header-content a:hover {
+            color: var(--link-hover);
+        }
+
+        /* Content styles */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin: 1.5rem 0;
+            background: white;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .experience-item, .education-item, .publication-item {
+            margin: 1rem 0;
+        }
+
+        .experience-item h3, .education-item h3 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+			margin-bottom: 0.2rem;
+        }
+
+        .company-location, .venue {
+            font-family: var(--heading-font);
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin: 0.3rem 0;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+			margin: 0.2rem 0;
+        }
+
+        .publication-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .publication-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Style publication titles with Roboto */
+        .publication-title {
+            font-family: var(--body-font);
+            font-weight: 500;  /* Medium weight for better emphasis */
+            color: var(--primary-color);
+			margin-bottom: 0.2rem;
+        }
+		
+		/* Style links within publication titles */
+        .publication-title a {
+			color: var(--primary-color);
+			text-decoration: none;
+			position: relative;
+			transition: color 0.3s ease;
+			display: inline-flex;  /* Change to inline-flex for better control */
+			align-items: baseline; /* Align text and icon at their baselines */
+			gap: 0.5rem;          /* Space between text and icon */
+		}
+		
+		.publication-title a::after {
+			content: '↗';
+			display: inline-block;  /* Changed from absolute positioning */
+			font-size: 0.9em;
+			opacity: 0.7;
+			transition: transform 0.2s ease, opacity 0.2s ease;
+			flex-shrink: 0;        /* Prevent the arrow from shrinking */
+		}
+		
+		.publication-title a::before {
+			content: '';
+			position: absolute;
+			width: 100%;           /* Now covers the full width */
+			height: 1px;
+			bottom: -2px;
+			left: 0;
+			background-color: var(--secondary-color);
+			transform: scaleX(0);
+			transform-origin: left;
+			transition: transform 0.3s ease;
+		}
+
+        /* Hover effects */
+		.publication-title a:hover {
+			color: var(--secondary-color);
+		}
+		
+		.publication-title a:hover::before {
+			transform: scaleX(1);  /* Reveal the underline */
+		}
+		
+		.publication-title a:hover::after {
+			transform: translateY(-2px);  /* Simplified transform */
+			opacity: 1;
+		}
+
+        /* Style author names with italic Roboto when needed */
+        .authors {
+            font-style: italic;
+            color: #666;
+            margin: 0.2rem 0 0.5rem 0;
+        }
+
+        /* Style dates with light Roboto */
+        .date {
+            color: #666;
+            font-style: italic;
+            font-weight: 300;  /* Using the light weight of Roboto */
+			margin-bottom: 0.3rem;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+		
+		.expertise-grid p {
+			margin: 0.3rem 0;  /* Tighter spacing between expertise items */
+		}
+		
+		/* Add styles for award categories */
+		.awards-category {
+			margin-bottom: 2rem;
+		}
+		
+		.awards-category h3 {
+			color: var(--secondary-color);
+			font-family: var(--heading-font);
+			font-size: 1.1rem;
+			margin: 1.5rem 0 1rem 0;
+			padding-bottom: 0.3rem;
+			border-bottom: 1px solid var(--secondary-color);
+		}
+
+		/* Style for award titles to distinguish from category headers */
+		.award-title {
+			font-family: var(--heading-font);
+			color: var(--primary-color);
+			font-size: 1.2rem;
+			margin: 0;
+		}
+		
+		.hobbies-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1.5rem;  /* Increased gap between columns for better separation */
+		}
+		
+		/* Create consistent column styling */
+		.hobbies-grid > div {
+			padding: 0.5rem;  /* Add consistent padding inside each column */
+		}
+		
+		/* Style the category headers */
+		.hobbies-grid > div > p:first-child {
+			font-family: var(--heading-font);  /* Use Oswald for headers */
+			color: var(--primary-color);
+			margin: 0 0 0.5rem 0;  /* Remove top margin, add bottom margin */
+			padding-bottom: 0.5rem;  /* Add padding before the underline */
+			border-bottom: 1px solid var(--secondary-color);  /* Add subtle separation line */
+		}
+		
+		/* Style the list items */
+		.hobbies-grid > div > p:not(:first-child) {
+			margin: 0.3rem 0;  /* Consistent margins for list items */
+			color: var(--text-color);
+		}
+		
+		.education-item {
+			margin: 1rem 0;
+		}
+
+		/* Style for thesis subjects */
+		.thesis-subject {
+			color: var(--primary-color);
+			font-size: 1.05em;     /* Slightly larger than normal text */
+			letter-spacing: 0.2px; /* Subtle letter spacing for emphasis */
+			margin: 0.3rem 0;
+		}
+
+		/* Style for supervisor information */
+		.supervisor-info {
+			color: #666;          /* Lighter color for secondary information */
+			font-size: 0.95em;    /* Slightly smaller than normal text */
+			font-style: italic;   /* Italics for distinction */
+			margin: 0.2rem 0;
+		}
+
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .contact-grid, .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                padding: 1rem;
+            }
+			
+			.contact-item img {
+                width: 20px;  /* Slightly smaller on mobile */
+                height: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <div class="header-content">
+            <h1>Félix G. Harvey</h1>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <img src="icons/location_4943528.png" alt="Location">
+                    <span>Montreal, Canada</span>
+                </div>
+                <div class="contact-item">
+                    <img src="icons/linkedin_3536569.png" alt="Linkedin">
+                    <a href="https://www.linkedin.com/in/felixgharvey/" target="_blank">LinkedIn</a>
+                </div>
+                <div class="contact-item">
+                    <img src="icons/email_3178158.png" alt="Email">
+                    <a href="mailto:c212.felixh@gmail.com">c212.felixh@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <img src="icons/graduation_13523134.png" alt="Scholar">
+                    <a href="https://scholar.google.ca/citations?user=gWL1kqsAAAAJ&hl=en" target="_blank">Google Scholar</a>
+                </div>
+                <div class="contact-item">
+                    <img src="icons/phone-call_455705.png" alt="Phone">
+                    <a href="tel:+14388229516">+1 (438) 822-9516</a>
+                </div>
+                <div class="contact-item">
+                    <img src="icons/youtube_1384028.png" alt="YouTube">
+                    <a href="https://www.youtube.com/@FelixGHarvey" target="_blank">YouTube</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+		<section id="expertise">
+            <h2>Expertise</h2>
+            <p>Since starting my Master's thesis in 2014, I have been exploring deep learning approaches to solve problems related to 3D character animation. These applications include motion classification, posing, completion, generation, text-to-motion and others.<br><br>I have built and trained convolutional, recurrent and attention neural networks in settings such as supervised and semi-supervised learning, auto-encoding and variational auto-encoding, generative adversarial models, and diffusion. My most recent focus has been to build state-of-the-art text-to-motion diffusion models, while trying to improve generalization and allowing for control and constraints to enable practical use-cases for video-game development.<br><br>In recent years, I have worked extensively with Python and libraries like PyTorch, PyTorch Lightning and PyTorch3D on the research side, while participating in integration efforts using Unity, C# and occasionally MotionBuilder.</p>
+        </section>
+		
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <h3>Senior Machine Learning Researcher</h3>
+                <div class="company-location">Unity</div>
+                <div class="date">2021 - 2025, Montreal, CA</div>
+                <p>Developing deep learning models to solve complex 3D animation problems, such as posing, motion completion, motion generation and others, using attention, convolutional and prototypical networks, diffusion models, control nets, and more.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Machine Learning Research Intern</h3>
+                <div class="company-location">La Forge, Ubisoft</div>
+                <div class="date">2016-2020, Montreal, CA</div>
+                <p>Developing recurrent neural network-based solutions for automatic generation of character animation transitions and semi-supervised approaches for 3D motion classification.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Teaching Assistant</h3>
+                <div class="company-location">Polytechnique Montreal</div>
+                <div class="date">2018, Montreal, CA</div>
+                <p>Probabilistic and learning techniques (INF8225)</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Teaching Assistant</h3>
+                <div class="company-location">Polytechnique Montreal</div>
+                <div class="date">2014, 2016, Montreal, CA </div>
+                <p>Advanced computer graphics (INF8702)</p>
+            </div>
+        </section>
+
+        <section id="publications">
+            <h2>Selected Publications and Presentations</h2>
+				<div class="publication-item">
+					<div class="publication-title">
+					<a href="https://www.youtube.com/watch?v=dmAa2kEtxfQ&ab_channel=FelixGHarvey" 
+					   target="_blank" 
+                       rel="noopener noreferrer">
+						Prototyping Game Character Animations with AI in Unity
+					</a>
+				</div>
+                <div class="venue">SIGGRAPH Asia 2024 Real-Time Live!</div>
+                <div class="authors">Florent Bocquelet, <b>Félix G. Harvey</b>, Pierre-Luc Loyer</div>
+            </div>
+
+            <div class="publication-item">
+				<div class="publication-title">
+					<a href="https://arxiv.org/abs/2201.06701" 
+					   target="_blank" 
+                       rel="noopener noreferrer">
+						Motion In-Betweening via Deep Δ-Interpolator
+					</a>
+				</div>
+                <div class="venue">IEEE TVCG 2023</div>
+                <div class="authors">Boris N. Oreshkin, Antonios Valkanas, <b>Félix G. Harvey</b>, Louis-Simon Ménard, Florent Bocquelet, Mark J. Coates</div>
+            </div>
+
+            <div class="publication-item">
+				<div class="publication-title">
+					<a href="https://www.youtube.com/watch?v=v9ElqfUBy8g&ab_channel=FelixGHarvey" 
+					   target="_blank" 
+                       rel="noopener noreferrer">
+						AI and Physics Assisted Character Pose Authoring
+					</a>
+				</div>
+                <div class="venue">SIGGRAPH 2022 Real-Time Live!</div>
+                <div class="authors">Florent Bocquelet, Boris Oreshkin, <b>Félix Harvey</b>, Louis-Simon Ménard, Dominic Laflamme, Bay Raitt, Jeremy Cowles</div>
+            </div>
+
+            <div class="publication-item">
+				<div class="publication-title">
+					<a href="https://unity-technologies.github.io/Labs/protores.html" 
+					   target="_blank" 
+                       rel="noopener noreferrer">
+						Protores: Proto-Residual Network for Pose Authoring via Learned Inverse Kinematics
+					</a>
+				</div>
+                <div class="venue">ICLR 2022 Oral</div>
+                <div class="authors">Boris N. Oreshkin, Florent Bocquelet, <b>Félix G. Harvey</b>, Bay Raitt, Dominic Laflamme</div>
+            </div>
+
+            <div class="publication-item">
+				<div class="publication-title">
+					<a href="https://montreal.ubisoft.com/en/automatic-in-betweening-for-faster-animation-authoring/" 
+					   target="_blank" 
+                       rel="noopener noreferrer">
+						Robust Motion In-betweening
+					</a>
+				</div>
+                <div class="venue">SIGGRAPH 2020</div>
+                <div class="authors"><b>Félix G. Harvey</b>, Mike Yurick, Derek Nowrouzezahrai, Christopher Pal</div>
+            </div>
+
+            <div class="publication-item">
+				<div class="publication-title">
+					<a href="https://arxiv.org/abs/1810.02363" 
+					   target="_blank" 
+                       rel="noopener noreferrer">
+						Recurrent Transition Networks for Character Locomotion
+					</a>
+				</div>
+                <div class="venue">SIGGRAPH ASIA 2018 Technical Briefs</div>
+                <div class="authors"><b>Félix G. Harvey</b>, Christopher Pal</div>
+            </div>
+
+            <div class="publication-item">
+				<div class="publication-title">
+					<a href="https://arxiv.org/abs/1511.06653" 
+					   target="_blank" 
+                       rel="noopener noreferrer">
+						Recurrent Semi-Supervised Classification and Constrained Adversarial Generation with Motion Capture Data
+					</a>
+				</div>
+                <div class="venue">Image and Vision Computing 78, 42-52, 2018</div>
+                <div class="authors"><b>Félix G. Harvey</b>, Julien Roy, David Kanaa, Christopher Pal</div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="education-item">
+				<h3>Doctorate of Philosophy</h3>
+				<div class="company-location">Polytechnique Montreal and Mila</div>
+				<div class="date">Montreal, CA. | 2021</div>
+				<p class="thesis-subject">Deep Representation Learning of 3D Human Motion with Recurrent Neural Networks</p>
+				<p class="supervisor-info">Supervised by Dr. Christopher Pal</p>
+			</div>
+
+			<div class="education-item">
+				<h3>Master of Science</h3>
+				<div class="company-location">Polytechnique Montreal and Mila</div>
+				<div class="date">Montreal, CA. | 2016</div>
+				<p class="thesis-subject">Deep Learning for Animation</p>
+				<p class="supervisor-info">Co-Supervised by Dr. Christopher Pal and Dr. Michel Gagnon</p>
+			</div>
+
+            <div class="education-item">
+                <h3>Bachelor of Science</h3>
+                <div class="company-location">Polytechnique Montreal</div>
+                <div class="date">Montreal, CA. | 2014</div>
+                <p>Software Engineering</p>
+            </div>
+        </section>
+
+        <section id="awards">
+			<h2>Awards</h2>
+			
+			<div class="awards-category">
+				<h3>Team Recognition</h3>
+				
+				<div class="experience-item">
+					<h4 class="award-title">Audience Choice Award</h4>
+					<div class="company-location">SIGGRAPH Real-Time Live!</div>
+					<div class="date">2022</div>
+					<p>With Unity Labs team for AI and Physics Assisted Character Pose Authoring</p>
+				</div>
+
+				<div class="experience-item">
+					<h4 class="award-title">Demo Competition Awards</h4>
+					<div class="company-location">Laval Virtual</div>
+					<div class="date">2014</div>
+					<p>2nd place in demos category & 3rd place in limited time category with student team</p>
+				</div>
+			</div>
+
+			<div class="awards-category">
+				<h3>Individual Achievement</h3>
+				
+				<div class="experience-item">
+					<h4 class="award-title">Recommendation for Best Ph.D. Thesis Award</h4>
+					<div class="company-location">Polytechnique Montreal</div>
+					<div class="date">2021</div>
+				</div>
+
+				<div class="experience-item">
+					<h4 class="award-title">Distinction of Excellence</h4>
+					<div class="company-location">Polytechnique Montreal</div>
+					<div class="date">2014</div>
+					<p>Outstanding scores during Bachelor's degree</p>
+				</div>
+
+				<div class="experience-item">
+					<h4 class="award-title">Excellence Grant</h4>
+					<div class="company-location">Polytechnique Montreal</div>
+					<div class="date">2009</div>
+				</div>
+			</div>
+		</section>
+		
+        <section id="languages">
+            <h2>Languages</h2>
+            <div class="language-item">
+                <span><strong>French:</strong> Native</span>
+            </div>
+            <div class="language-item">
+                <span><strong>English:</strong> Fluent</span>
+            </div>
+        </section>
+
+        <section id="hobbies">
+            <h2>Hobbies</h2>
+            <div class="hobbies-grid">
+                <div>
+                    <p><strong>Sports & Outdoors</strong></p>
+                    <p>Canoeing and Kayaking</p>
+                    <p>Camping</p>
+                    <p>Volleyball, Badminton</p>
+                    <p>Scuba diving</p>
+                </div>
+                <div>
+                    <p><strong>Music</strong></p>
+                    <p>Guitar</p>
+					<p>Bass</p>
+					<p>Drums</p>
+					<p>Piano</p>
+                </div>
+				<div>
+                    <p><strong>Games</strong></p>
+                    <p>Board games</p>
+					<p>Video games</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="miscellaneous">
+            <h2>Miscellaneous</h2>
+            <p><strong>YouTube partner, 2006-2011</strong><br>Created 2D flash animations that accumulated a total of more than 65M views.</p>
+        </section>
+    </div>
+</body>
+</html>
