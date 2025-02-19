@@ -10,7 +10,7 @@
 	<!-- Add Google Fonts import for Oswald -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Inter:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Inter:ital,wght@0,300;0,400;0,500;0,550;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -130,6 +130,12 @@
             padding: 1rem;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+		
+		.expertise-highlight {
+            font-weight: 600;
+            color: var(--primary-color);  /* Using the primary color for subtle emphasis */
+            letter-spacing: 0.2px;  /* Slight letter spacing for better readability */
         }
 
         .experience-item, .education-item, .publication-item {
@@ -378,7 +384,7 @@
     <div class="container">
 		<section id="expertise">
             <h2>Expertise</h2>
-            <p>Since starting my Master's thesis in 2014, I have been exploring <b>deep learning</b> approaches to solve problems related to <b>3D character animation</b>. These applications include <b>motion classification, posing, motion completion, motion generation, text-to-motion</b> and others.<br><br>I have built and trained <b>convolutional, recurrent</b> and <b>attention neural networks</b> in settings such as <b>supervised</b> and <b>semi-supervised learning, auto-encoding</b> and <b>variational auto-encoding, generative adversarial models</b>, and <b>diffusion</b>. My most recent focus has been to build state-of-the-art <b>text-to-motion</b> diffusion models, while trying to improve generalization and allowing for control and constraints to enable practical use-cases for video-game development.<br><br>In recent years, I have worked extensively with <b>Python</b> and libraries such as <b>PyTorch, PyTorch-Lightning, PyTorch3D, OmegaConf</b> and <b>Hydra</b> on the research side, while participating in integration efforts using <b>Unity, C#</b> and occasionally <b>MotionBuilder</b>.</p>
+            <p class="expertise-content">Since starting my Master's thesis in 2014, I have been exploring *deep learning* approaches to solve problems related to *3D character animation*. These applications include *motion classification, posing, motion completion, motion generation, text-to-motion* and others.<br><br>I have built and trained *convolutional, recurrent, attention* and *prototypical neural networks* in settings such as *supervised* and *semi-supervised learning, auto-encoding* and *variational auto-encoding, generative adversarial models*, and *diffusion*. My most recent focus has been to build state-of-the-art *text-to-motion* diffusion models, while trying to improve generalization and allowing for control and constraints to enable practical use-cases for video-game development.<br><br>In recent years, I have worked extensively with *Python* and libraries such as *PyTorch, PyTorch-Lightning, PyTorch3D, OmegaConf* and *Hydra* on the research side, while participating in integration efforts using *Unity, C#* and occasionally *MotionBuilder*.</p>
         </section>
 		
         <section id="experience">
@@ -428,7 +434,7 @@
 
             <div class="publication-item">
 				<div class="publication-title">
-					<a href="https://arxiv.org/abs/2201.06701" 
+					<a href="https://arxiv.org/pdf/2201.06701" 
 					   target="_blank" 
                        rel="noopener noreferrer">
 						Motion In-Betweening via Deep Δ-Interpolator
@@ -476,7 +482,7 @@
 
             <div class="publication-item">
 				<div class="publication-title">
-					<a href="https://arxiv.org/abs/1810.02363" 
+					<a href="https://arxiv.org/pdf/1810.02363" 
 					   target="_blank" 
                        rel="noopener noreferrer">
 						Recurrent Transition Networks for Character Locomotion
@@ -488,7 +494,7 @@
 
             <div class="publication-item">
 				<div class="publication-title">
-					<a href="https://arxiv.org/abs/1511.06653" 
+					<a href="https://arxiv.org/pdf/1511.06653" 
 					   target="_blank" 
                        rel="noopener noreferrer">
 						Recurrent Semi-Supervised Classification and Constrained Adversarial Generation with Motion Capture Data
@@ -610,5 +616,24 @@
             <p><strong>YouTube partner, 2006-2011</strong><br>Created 2D flash animations that accumulated a total of more than 65M views.</p>
         </section>
     </div>
+	
+	<script>
+        // Function to convert markdown-style emphasis to spans
+        function convertEmphasis() {
+            const expertiseContent = document.querySelector('.expertise-content');
+            if (!expertiseContent) return;
+
+            // Replace *text* with <span> elements while preserving line breaks
+            expertiseContent.innerHTML = expertiseContent.innerHTML
+                .split('\n\n') // Split into paragraphs
+                .map(paragraph => 
+                    paragraph.replace(/\*(.*?)\*/g, '<span class="expertise-highlight">$1</span>')
+                )
+                .join('<br><br>'); // Rejoin paragraphs with line breaks
+        }
+
+        // Run conversion when page loads
+        document.addEventListener('DOMContentLoaded', convertEmphasis);
+    </script>
 </body>
 </html>
