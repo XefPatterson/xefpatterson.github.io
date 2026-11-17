@@ -14,3 +14,14 @@ function convertEmphasis() {
 
 // Run conversion when page loads
 document.addEventListener('DOMContentLoaded', convertEmphasis);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (!themeToggle) return;
+
+    themeToggle.addEventListener('click', () => {
+        const isDark = document.documentElement.dataset.theme !== 'light';
+        document.documentElement.dataset.theme = isDark ? 'light' : 'dark';
+        themeToggle.setAttribute('aria-pressed', String(!isDark));
+    });
+});
