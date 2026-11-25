@@ -25,3 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.setAttribute('aria-pressed', String(!isDark));
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const emailLink = document.querySelector('.email-link');
+    if (!emailLink) return;
+
+    const email = String.fromCharCode(99, 50, 49, 50, 46, 102, 101, 108, 105, 120, 104, 64, 103, 109, 97, 105, 108, 46, 99, 111, 109);
+    emailLink.href = `mailto:${email}`;
+});

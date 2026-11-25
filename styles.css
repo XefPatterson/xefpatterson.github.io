@@ -220,6 +220,21 @@ a {
     color: var(--link-hover);
 }
 
+.email-link {
+    color: var(--header-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.email-link:hover {
+    color: var(--link-hover);
+}
+
+.email-link:focus-visible {
+    outline: 2px solid var(--link-hover);
+    outline-offset: 3px;
+}
+
 /* Content Layout */
 .container {
     max-width: 800px;
