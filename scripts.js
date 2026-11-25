@@ -27,9 +27,38 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const emailLink = document.querySelector('.email-link');
-    if (!emailLink) return;
+    const emailButton = document.querySelector('.email-link');
+    const emailStatus = document.querySelector('.email-status');
+    if (!emailButton || !emailStatus) return;
 
     const email = String.fromCharCode(99, 50, 49, 50, 46, 102, 101, 108, 105, 120, 104, 64, 103, 109, 97, 105, 108, 46, 99, 111, 109);
-    emailLink.href = `mailto:${email}`;
+    let fadeTimeout;
+    let clearTimeoutId;
+
+    const resetEmailStatus = () => {
+        clearTimeout(fadeTimeout);
+        clearTimeout(clearTimeoutId);
+        emailStatus.classList.remove('fade-out');
+    };
+
+    const showEmailStatus = (message) => {
+        resetEmailStatus();
+        emailStatus.textContent = message;
+        fadeTimeout = setTimeout(() => emailStatus.classList.add('fade-out'), 500);
+        clearTimeoutId = setTimeout(() => {
+            emailStatus.textContent = '';
+            emailStatus.classList.remove('fade-out');
+        }, 5000);
+    };
+
+    emailButton.addEventListener('click', async () => {
+        resetEmailStatus();
+        try {
+            await navigator.clipboard.writeText(email);
+            showEmailStatus('Email copied');
+        } catch (error) {
+            console.error('Unable to copy email address.', error);
+            showEmailStatus('Could not copy email');
+        }
+    });
 });

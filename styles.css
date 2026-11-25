@@ -221,8 +221,13 @@ a {
 }
 
 .email-link {
+    padding: 0;
+    border: 0;
+    background: none;
     color: var(--header-text);
-    text-decoration: none;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
     transition: color 0.3s ease;
 }
 
@@ -233,6 +238,21 @@ a {
 .email-link:focus-visible {
     outline: 2px solid var(--link-hover);
     outline-offset: 3px;
+}
+
+.email-status {
+    color: var(--muted-text);
+    font-size: 0.85rem;
+}
+
+.email-status.fade-out {
+    animation: email-status-fade-out 4.5s ease forwards;
+}
+
+@keyframes email-status-fade-out {
+    to {
+        opacity: 0;
+    }
 }
 
 /* Content Layout */
